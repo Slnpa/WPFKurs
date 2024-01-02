@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfApp2.View.HistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2.View"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="HistoryWindow" Height="450" Width="800">
+    <ScrollViewer>
+        <Grid Background="BlanchedAlmond">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="История заказов"></TextBlock>
+            <Button FontSize="18" Grid.Column="2" Background="#FFFCCD86" Foreground="Black" Grid.Row="0" Content="Назад" Command="{Binding MoveToCatalog}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <ItemsControl Grid.ColumnSpan="3" Grid.Row="1" Name="historyListView" ItemsSource="{Binding}" Margin="0,131,0,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" CornerRadius="30">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0" Grid.Column="0"  Grid.Row="0" Text="Имя пользователя"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"  Grid.Row="0" Text="{Binding username}"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0" Grid.Column="2"  Grid.Row="0" Text="Дата заказа"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="3"  Grid.Row="0" Text="{Binding date_order}"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0" Grid.Column="0"  Grid.Row="1" Text="Информация о заказе"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Grid.Column="1"  Grid.ColumnSpan="3"  Grid.Row="1" Text="{Binding information_order}"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0" Grid.Column="0"  Grid.Row="2" Text="Количество товара"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"  Grid.Row="2" Text="{Binding all_count}"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0" Grid.Column="2"  Grid.Row="2" Text="Общая стоимость"/>
+                                <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="3"  Grid.Row="2" Text="{Binding all_price}"/>
+                        </Grid>
+                            </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </ScrollViewer>
+</Window>
